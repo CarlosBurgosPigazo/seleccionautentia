@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.richard.dao.espec.ProfesorMapper">
+    <select id="getAll" resultMap="ProfesorMapper">
+        SELECT * FROM profesor
+    </select>
+    <insert id="insert" parameterType="Curso">
+        INSERT INTO profesor(nombre)
+        VALUES(#{nombre})
+    </insert>
+</mapper>
