@@ -9,7 +9,4 @@ import java.util.List;
 public interface ProfesorMapper {
     List<Profesor> getAll();
 
-    void insert(Profesor profesor);
-
-
 }

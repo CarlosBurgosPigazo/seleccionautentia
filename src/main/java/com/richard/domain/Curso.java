@@ -52,6 +52,18 @@ public class Curso {
         return nivel;
     }
 
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", activo=" + activo +
+                ", idProfesor=" + idProfesor +
+                ", horas=" + horas +
+                ", nivel='" + nivel + '\'' +
+                '}';
+    }
+
     public void setNivel(String nivel) {
         this.nivel = nivel;
     }

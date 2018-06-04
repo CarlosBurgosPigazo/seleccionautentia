@@ -18,8 +18,4 @@ public class ProfesorService {
     public List<Profesor> getAll() {
         return profesorMapper.getAll();
     }
-
-    public void insert(Profesor profesor) {
-        profesorMapper.insert(profesor);
-    }
 }
