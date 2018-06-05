@@ -1,6 +1,6 @@
 package com.richard.service;
 
-import com.richard.dao.espec.CursoMapper;
+import com.richard.data.CursoMapper;
 import com.richard.domain.Curso;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("cursoService")
 public class CursoService {
     private CursoMapper cursoMapper;
 

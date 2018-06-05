@@ -5,7 +5,7 @@
          version="4.0">
     <display-name>Proceso Autentia</display-name>
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>listadoDCursos.xhtml</welcome-file>
     </welcome-file-list>
 
 
@@ -42,17 +42,10 @@
 
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.faces</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.faces</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -60,6 +53,5 @@
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
-
 
 </web-app>

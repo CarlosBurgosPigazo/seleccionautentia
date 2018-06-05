@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+    <h:form id="form">
+        <p:growl id="mensaje" showDetail="true"></p:growl>
+        <p:dataTable value="#{cursoController.cursos}" id="tablaCursos" var="curso" paginator="true" rows="4"
+                     paginatorPosition="bottom">
+            <f:facet name="header">
+                Catálogo de cursos
+            </f:facet>
+            <p:column headerText="Título" sortBy="#{curso.titulo}">
+                <h:outputText value="#{curso.titulo}"/>
+            </p:column>
+
+            <p:column headerText="Nivel">
+                <h:outputText value="#{curso.nivel}"/>
+            </p:column>
+
+            <p:column headerText="Horas">
+                <h:outputText value="#{curso.horas}"/>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Nuevo curso" type="button" onclick="PF('altaCurso').show()">
+        </p:commandButton>
+
+    </h:form>
+    <p:dialog widgetVar="altaCurso" modal="true">
+        <h:form id="nuevoCursoForm">
+
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="titulo" value="Título"></p:outputLabel>
+                <p:inputText id="titulo" value="#{cursoController.cursoAInsertar.titulo}" required="true">
+                </p:inputText>
+                <p:outputLabel for="activecheck" value="Activo: "/>
+                <p:selectBooleanCheckbox id="activecheck" value="#{cursoController.cursoAInsertar.activo}"/>
+                <p:outputLabel for="profesordrop" value="Profesor: "/>
+                <p:selectOneMenu id="profesordrop" value="#{cursoController.cursoAInsertar.idProfesor}">
+                    <f:selectItems value="#{profesorController.profesores}" var="profesor"
+                                   itemLabel="#{profesor.nombre}" itemValue="#{profesor.id}"/>
+                </p:selectOneMenu>
+                <p:outputLabel for="niveldrop" value="Nivel:"/>
+                <p:selectOneMenu id="niveldrop" value="#{cursoController.cursoAInsertar.nivel}">
+                    <f:selectItem itemValue="Básico" itemLabel="Básico"/>
+                    <f:selectItem itemValue="Intermedio" itemLabel="Intermedio"/>
+                    <f:selectItem itemValue="Avanzado" itemLabel="Avanzado"/>
+                </p:selectOneMenu>
+                <p:outputLabel for="spinnerhoras" value="Horas:"/>
+                <p:spinner id="spinnerhoras" value="${cursoController.cursoAInsertar.horas}" min="1" max="2000"/>
+
+
+                <p:commandButton value="Añadir" type="submit"
+                                 oncomplete="handleAdd(xhr, status, args)"
+                                 update="nuevoCursoForm form:tablaCursos"
+                                 actionListener="#{cursoController.insertCurrent}"
+                >
+
+                </p:commandButton>
+            </h:panelGrid>
+
+        </h:form>
+    </p:dialog>
+    <script type="application/javascript">
+        function handleAdd(xhr, status, args) {
+            if (args.validationFailed) {
+                PF('altaCurso').jq.effect("shake", {times: 5}, 100);
+            } else {
+                PF('altaCurso').hide();
+                $('#nuevoCursoForm').trigger('reset')
+            }
+        }
+    </script>
+
+</h:body>
+</html>
