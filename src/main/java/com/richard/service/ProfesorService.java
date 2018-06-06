@@ -11,6 +11,7 @@ import java.util.List;
 public class ProfesorService {
     private ProfesorMapper profesorMapper;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public ProfesorService(ProfesorMapper profesorMapper) {
         this.profesorMapper = profesorMapper;

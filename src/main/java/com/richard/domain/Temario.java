@@ -1,5 +1,8 @@
 package com.richard.domain;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Temario {
     private long id;
     private String nombre;

@@ -35,12 +35,6 @@ public class CursoController implements Serializable {
 
     private Temario temarioAsociado;
 
-    private StreamedContent temarioADescargar;
-
-    public CursoService getCursoService() {
-        return cursoService;
-    }
-
     @PostConstruct
     public void init() {
         cursos = cursoService.getActivos();
@@ -62,10 +56,8 @@ public class CursoController implements Serializable {
     }
 
     public void insertCurrent() {
-        //TODO devolver id
         cursoService.insert(cursoAInsertar);
-        showMsg("Curso: " + cursoAInsertar.getTitulo() + " insertado");
-
+        showMsg("Curso: " + cursoAInsertar.getTitulo() + " creado.");
         if (temarioAsociado.getBytes() != null) {
             temarioAsociado.setId(cursoAInsertar.getId());
             temarioService.insert(temarioAsociado);
@@ -78,7 +70,6 @@ public class CursoController implements Serializable {
     }
 
     private void showMsg(String msg) {
-
         FacesContext.getCurrentInstance()
                 .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Información", msg));
@@ -99,14 +90,6 @@ public class CursoController implements Serializable {
         this.cursoAInsertar = cursoAInsertar;
     }
 
-    public Temario getTemarioAsociado() {
-        return temarioAsociado;
-    }
-
-    public void setTemarioAsociado(Temario temarioAsociado) {
-        this.temarioAsociado = temarioAsociado;
-    }
-
     public void setTemarioService(TemarioService temarioService) {
         this.temarioService = temarioService;
     }
@@ -119,10 +102,6 @@ public class CursoController implements Serializable {
             showMsg("No hay temario asociado para este curso");
             return null;
         }
-
     }
 
-    public void setTemarioADescargar(StreamedContent temarioADescargar) {
-        this.temarioADescargar = temarioADescargar;
-    }
 }

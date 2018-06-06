@@ -2,6 +2,7 @@ package com.richard.service;
 
 import com.richard.data.CursoMapper;
 import com.richard.domain.Curso;
+import com.richard.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,6 +14,7 @@ import java.util.List;
 public class CursoService {
     private CursoMapper cursoMapper;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public CursoService(CursoMapper cursoMapper) {
         this.cursoMapper = cursoMapper;
@@ -21,6 +23,7 @@ public class CursoService {
     public List<Curso> getActivos() {
         return cursoMapper.getActivos();
     }
+
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void insert(Curso curso) {

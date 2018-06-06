@@ -7,10 +7,11 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head></h:head>
 <h:body>
-    <h:form id="form">
+    <h:form id="formListado" style="width: 70%; margin: auto">
         <p:growl id="listaMsg" showDetail="true"></p:growl>
         <p:dataTable value="#{cursoController.cursos}" id="tablaCursos" var="curso" paginator="true" rows="4"
                      paginatorPosition="bottom">
+
             <f:facet name="header">
                 Catálogo de cursos
             </f:facet>
@@ -25,11 +26,13 @@
             <p:column headerText="Horas">
                 <h:outputText value="#{curso.horas}"/>
             </p:column>
-            <p:column headerText="Temario">
+
+            <p:column headerText="Temario" >
                 <p:commandButton value="Descargar" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
                     <p:fileDownload value="#{cursoController.getTemarioADescargar(curso.id)}" />
                 </p:commandButton>
             </p:column>
+
         </p:dataTable>
         <p:commandButton value="Nuevo curso" type="button" onclick="PF('altaCurso').show()">
         </p:commandButton>
@@ -59,10 +62,9 @@
                 <p:spinner id="spinnerHoras" value="${cursoController.cursoAInsertar.horas}" min="1" max="2000"/>
                 <p:outputLabel for="subidaFichero" value="Temario:"></p:outputLabel>
                 <p:fileUpload sizeLimit="16777214" invalidSizeMessage="Tamaño máximo de 16MB" uploadLabel="Confirmar" cancelLabel="Cancelar" multiple="false" id="subidaFichero" fileUploadListener="#{cursoController.uploadTemarioEvent}" update="dialogMsg"  />
-
                 <p:commandButton value="Añadir" type="submit"
                                  oncomplete="handleAdd(xhr, status, args)"
-                                 update="nuevoCursoForm form:tablaCursos form:listaMsg"
+                                 update="nuevoCursoForm formListado:tablaCursos formListado:listaMsg"
                                  actionListener="#{cursoController.insertCurrent}"
                 >
 

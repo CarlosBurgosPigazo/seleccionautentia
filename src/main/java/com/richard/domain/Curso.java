@@ -1,7 +1,10 @@
 package com.richard.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 
+@Component
 public class Curso {
     private long id;
     private String titulo;
