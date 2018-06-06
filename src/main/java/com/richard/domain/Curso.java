@@ -12,7 +12,6 @@ public class Curso {
     private long idProfesor;
     private int horas;
     private String nivel;
-    private File temario;
 
     public long getId() {
         return id;
@@ -60,14 +59,6 @@ public class Curso {
 
     public void setNivel(String nivel) {
         this.nivel = nivel;
-    }
-
-    public File getTemario() {
-        return temario;
-    }
-
-    public void setTemario(File temario) {
-        this.temario = temario;
     }
 
     @Override
