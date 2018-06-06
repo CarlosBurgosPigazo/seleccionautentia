@@ -1,13 +1,11 @@
 package com.richard.data;
 
 import com.richard.domain.Curso;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Mapper
 public interface CursoMapper {
 
 
@@ -25,6 +23,7 @@ public interface CursoMapper {
 
     @Insert("INSERT INTO CURSO (titulo, activo, horas, nivel, idProfesor) " +
             "VALUES (#{titulo}, #{activo}, #{horas}, #{nivel}, #{idProfesor})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
     void insert(Curso curso);
 
 }

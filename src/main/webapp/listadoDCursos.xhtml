@@ -8,7 +8,7 @@
 <h:head></h:head>
 <h:body>
     <h:form id="form">
-        <p:growl id="mensaje" showDetail="true"></p:growl>
+        <p:growl id="listaMsg" showDetail="true"></p:growl>
         <p:dataTable value="#{cursoController.cursos}" id="tablaCursos" var="curso" paginator="true" rows="4"
                      paginatorPosition="bottom">
             <f:facet name="header">
@@ -25,13 +25,18 @@
             <p:column headerText="Horas">
                 <h:outputText value="#{curso.horas}"/>
             </p:column>
+            <p:column headerText="Temario">
+                <p:commandButton value="Descargar" onclick="PrimeFaces.monitorDownload(start, stop);" icon="ui-icon-arrowthick-1-s">
+                    <p:fileDownload value="#{cursoController.getTemarioADescargar(curso.id)}" />
+                </p:commandButton>
+            </p:column>
         </p:dataTable>
         <p:commandButton value="Nuevo curso" type="button" onclick="PF('altaCurso').show()">
         </p:commandButton>
 
     </h:form>
     <p:dialog widgetVar="altaCurso" modal="true">
-        <h:form id="nuevoCursoForm">
+        <h:form id="nuevoCursoForm" enctype="multipart/form-data">
 
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="titulo" value="Título"></p:outputLabel>
@@ -50,17 +55,19 @@
                     <f:selectItem itemValue="Intermedio" itemLabel="Intermedio"/>
                     <f:selectItem itemValue="Avanzado" itemLabel="Avanzado"/>
                 </p:selectOneMenu>
-                <p:outputLabel for="spinnerhoras" value="Horas:"/>
-                <p:spinner id="spinnerhoras" value="${cursoController.cursoAInsertar.horas}" min="1" max="2000"/>
-
+                <p:outputLabel for="spinnerHoras" value="Horas:"/>
+                <p:spinner id="spinnerHoras" value="${cursoController.cursoAInsertar.horas}" min="1" max="2000"/>
+                <p:outputLabel for="subidaFichero" value="Temario:"></p:outputLabel>
+                <p:fileUpload sizeLimit="16777214" invalidSizeMessage="Tamaño máximo de 16MB" uploadLabel="Confirmar" cancelLabel="Cancelar" multiple="false" id="subidaFichero" fileUploadListener="#{cursoController.uploadTemarioEvent}" update="dialogMsg"  />
 
                 <p:commandButton value="Añadir" type="submit"
                                  oncomplete="handleAdd(xhr, status, args)"
-                                 update="nuevoCursoForm form:tablaCursos"
+                                 update="nuevoCursoForm form:tablaCursos form:listaMsg"
                                  actionListener="#{cursoController.insertCurrent}"
                 >
 
                 </p:commandButton>
+                <p:growl id="dialogMsg" showDetail="true"/>
             </h:panelGrid>
 
         </h:form>

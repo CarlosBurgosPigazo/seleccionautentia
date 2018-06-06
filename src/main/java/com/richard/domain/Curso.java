@@ -1,5 +1,7 @@
 package com.richard.domain;
 
+import java.io.File;
+
 public class Curso {
     private long id;
     private String titulo;
@@ -7,6 +9,7 @@ public class Curso {
     private long idProfesor;
     private int horas;
     private String nivel;
+    private File temario;
 
     public long getId() {
         return id;
@@ -52,6 +55,18 @@ public class Curso {
         return nivel;
     }
 
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
+    public File getTemario() {
+        return temario;
+    }
+
+    public void setTemario(File temario) {
+        this.temario = temario;
+    }
+
     @Override
     public String toString() {
         return "Curso{" +
@@ -62,9 +77,5 @@ public class Curso {
                 ", horas=" + horas +
                 ", nivel='" + nivel + '\'' +
                 '}';
-    }
-
-    public void setNivel(String nivel) {
-        this.nivel = nivel;
     }
 }

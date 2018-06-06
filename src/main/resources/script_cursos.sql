@@ -5,7 +5,7 @@ USE cursos;
 CREATE TABLE profesor (
   id     INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL
-);
+) ENGINE=InnoDB;
 CREATE TABLE curso (
   id         INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   titulo     VARCHAR(50),
@@ -13,7 +13,7 @@ CREATE TABLE curso (
   horas      INT(8),
   nivel      VARCHAR(20),
   idProfesor INT REFERENCES PROFESOR (id)
-);
+)ENGINE=InnoDB;
 
 INSERT INTO profesor (nombre) VALUES ('Roberto Canales Mora');
 INSERT INTO profesor (nombre) VALUES ('Lorena Sánchez Pérez');
@@ -41,3 +41,10 @@ INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Arquitectura S
 INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('J2EE', 1, 40,'Avanzado', 7 );
 INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Java 10', 1, 20,'Intermedio', 2 );
 INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Programación OOP', 1, 15,'Básico', 3 );
+
+CREATE TABLE TEMARIO(
+  id    INT(8) PRIMARY KEY REFERENCES CURSO(id),
+  nombre VARCHAR(50),
+  extension VARCHAR(50),
+  bytes MEDIUMBLOB
+)ENGINE=InnoDB;

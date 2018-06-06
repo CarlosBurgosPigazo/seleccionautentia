@@ -24,6 +24,8 @@ public class CursoService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void insert(Curso curso) {
-        cursoMapper.insert(curso);
+         cursoMapper.insert(curso);
     }
+
+
 }
