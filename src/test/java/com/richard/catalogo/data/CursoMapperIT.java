@@ -7,13 +7,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {DataSourceConfig.class})
+@TestPropertySource("classpath:application-test.properties")
 public class CursoMapperIT {
 
     @Autowired
@@ -23,6 +27,7 @@ public class CursoMapperIT {
     public void todosLosCursosDeberianSerActivos() { assertTrue(cursoMapper.getActivos().stream().allMatch(Curso::isActivo)); }
 
     @Test
+    @Transactional
     public void insertandoUnCursoNoActivoNoDeberiaMostrarseEnLosActivos(){
         Curso cursoAInsertar = new Curso();
         cursoAInsertar.setTitulo("Prueba");
@@ -30,11 +35,13 @@ public class CursoMapperIT {
         cursoAInsertar.setIdProfesor(1);
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
+
         cursoMapper.insert(cursoAInsertar);
-        System.out.println(cursoAInsertar);
+        
         assertTrue(!cursoMapper.getActivos().contains(cursoAInsertar));
     }
     @Test
+    @Transactional
     public void insertadoUnCursoActivoEsteTieneElUltimoId(){
         Curso cursoAInsertar = new Curso();
         cursoAInsertar.setTitulo("Prueba");
@@ -42,8 +49,10 @@ public class CursoMapperIT {
         cursoAInsertar.setIdProfesor(1);
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
+
         cursoMapper.insert(cursoAInsertar);
         List<Curso> activos = cursoMapper.getActivos();
+
         assertEquals(activos.get(activos.size()-1 ).getId(), cursoAInsertar.getId());
     }
 
