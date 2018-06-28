@@ -3,8 +3,10 @@ package com.richard.catalogo.controller;
 import com.richard.catalogo.domain.Curso;
 import com.richard.catalogo.domain.Temario;
 import com.richard.catalogo.service.CursoService;
-import com.richard.catalogo.service.TemarioService;
+import com.richard.catalogo.service.Impl.CursoServiceImpl;
+import com.richard.catalogo.service.Impl.TemarioServiceImpl;
 
+import com.richard.catalogo.service.TemarioService;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -24,10 +26,10 @@ import java.util.List;
 @ViewScoped
 public class CursoController implements Serializable {
 
-    @ManagedProperty("#{cursoService}")
+    @ManagedProperty("#{cursoServiceImpl}")
     private CursoService cursoService;
 
-    @ManagedProperty("#{temarioService}")
+    @ManagedProperty("#{temarioServiceImpl}")
     private TemarioService temarioService;
 
     private List<Curso> cursos;

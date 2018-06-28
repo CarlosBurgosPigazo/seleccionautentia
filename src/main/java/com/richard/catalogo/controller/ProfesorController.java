@@ -17,7 +17,7 @@ public class ProfesorController implements Serializable {
 
     private List<Profesor> profesores;
 
-    @ManagedProperty("#{profesorService}")
+    @ManagedProperty("#{profesorServiceImpl}")
     private ProfesorService profesorService;
 
     public ProfesorService getProfesorService() {
