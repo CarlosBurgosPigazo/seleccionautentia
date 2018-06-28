@@ -1,7 +1,7 @@
-package com.richard.controller;
+package com.richard.catalogo.controller;
 
-import com.richard.domain.Profesor;
-import com.richard.service.ProfesorService;
+import com.richard.catalogo.domain.Profesor;
+import com.richard.catalogo.service.ProfesorService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

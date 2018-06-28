@@ -1,7 +1,8 @@
-package com.richard.data;
+package com.richard.catalogo.data;
 
-import com.richard.domain.Curso;
 import org.apache.ibatis.annotations.*;
+
+import com.richard.catalogo.domain.Curso;
 
 import java.util.List;
 

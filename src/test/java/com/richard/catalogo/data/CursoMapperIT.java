@@ -1,31 +1,26 @@
-package com.richard.data;
+package com.richard.catalogo.data;
 
-import com.richard.config.DataSourceConfig;
-import com.richard.domain.Curso;
-import com.richard.service.CursoService;
-import org.hamcrest.CoreMatchers;
-import org.junit.Before;
+import com.richard.catalogo.config.DataSourceConfig;
+import com.richard.catalogo.domain.Curso;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import static org.hamcrest.CoreMatchers.*;
 
-import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {DataSourceConfig.class})
-public class CursoServiceTest {
+public class CursoMapperIT {
 
     @Autowired
-    private CursoService cursoService;
+    private CursoMapper cursoMapper;
 
     @Test
-    public void todosLosCursosDeberianSerActivos() { assertTrue(cursoService.getActivos().stream().allMatch(Curso::isActivo)); }
+    public void todosLosCursosDeberianSerActivos() { assertTrue(cursoMapper.getActivos().stream().allMatch(Curso::isActivo)); }
 
     @Test
     public void insertandoUnCursoNoActivoNoDeberiaMostrarseEnLosActivos(){
@@ -35,9 +30,9 @@ public class CursoServiceTest {
         cursoAInsertar.setIdProfesor(1);
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
-        cursoService.insert(cursoAInsertar);
+        cursoMapper.insert(cursoAInsertar);
         System.out.println(cursoAInsertar);
-        assertTrue(!cursoService.getActivos().contains(cursoAInsertar));
+        assertTrue(!cursoMapper.getActivos().contains(cursoAInsertar));
     }
     @Test
     public void insertadoUnCursoActivoEsteTieneElUltimoId(){
@@ -47,8 +42,8 @@ public class CursoServiceTest {
         cursoAInsertar.setIdProfesor(1);
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
-        cursoService.insert(cursoAInsertar);
-        List<Curso> activos = cursoService.getActivos();
+        cursoMapper.insert(cursoAInsertar);
+        List<Curso> activos = cursoMapper.getActivos();
         assertEquals(activos.get(activos.size()-1 ).getId(), cursoAInsertar.getId());
     }
 

@@ -1,9 +1,10 @@
-package com.richard.data;
+package com.richard.catalogo.data;
 
-import com.richard.domain.Temario;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import com.richard.catalogo.domain.Temario;
 
 @Mapper
 public interface TemarioMapper {

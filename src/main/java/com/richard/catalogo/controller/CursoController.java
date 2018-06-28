@@ -1,9 +1,10 @@
-package com.richard.controller;
+package com.richard.catalogo.controller;
 
-import com.richard.domain.Curso;
-import com.richard.domain.Temario;
-import com.richard.service.CursoService;
-import com.richard.service.TemarioService;
+import com.richard.catalogo.domain.Curso;
+import com.richard.catalogo.domain.Temario;
+import com.richard.catalogo.service.CursoService;
+import com.richard.catalogo.service.TemarioService;
+
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
