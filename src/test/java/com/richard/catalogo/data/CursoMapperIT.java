@@ -21,10 +21,10 @@ import static org.junit.Assert.*;
 public class CursoMapperIT {
 
     @Autowired
-    private CursoMapper cursoMapper;
+    private CursoMapper sut;
 
     @Test
-    public void todosLosCursosDeberianSerActivos() { assertTrue(cursoMapper.getActivos().stream().allMatch(Curso::isActivo)); }
+    public void todosLosCursosDeberianSerActivos() { assertTrue(sut.getActivos().stream().allMatch(Curso::isActivo)); }
 
     @Test
     @Transactional
@@ -36,9 +36,9 @@ public class CursoMapperIT {
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
 
-        cursoMapper.insert(cursoAInsertar);
+        sut.insert(cursoAInsertar);
 
-        assertTrue(!cursoMapper.getActivos().contains(cursoAInsertar));
+        assertTrue(!sut.getActivos().contains(cursoAInsertar));
     }
     @Test
     @Transactional
@@ -50,8 +50,8 @@ public class CursoMapperIT {
         cursoAInsertar.setHoras(100);
         cursoAInsertar.setNivel("Intermedio");
 
-        cursoMapper.insert(cursoAInsertar);
-        List<Curso> activos = cursoMapper.getActivos();
+        sut.insert(cursoAInsertar);
+        List<Curso> activos = sut.getActivos();
 
         assertEquals(activos.get(activos.size()-1 ).getId(), cursoAInsertar.getId());
     }

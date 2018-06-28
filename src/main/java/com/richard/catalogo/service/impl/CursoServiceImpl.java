@@ -1,4 +1,4 @@
-package com.richard.catalogo.service.Impl;
+package com.richard.catalogo.service.impl;
 
 import com.richard.catalogo.data.CursoMapper;
 import com.richard.catalogo.domain.Curso;
@@ -6,8 +6,6 @@ import com.richard.catalogo.service.CursoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,8 +22,6 @@ public class CursoServiceImpl implements CursoService {
         return cursoMapper.getActivos();
     }
 
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void insert(Curso curso) {
          cursoMapper.insert(curso);
     }

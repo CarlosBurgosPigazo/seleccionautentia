@@ -3,8 +3,6 @@ package com.richard.catalogo.controller;
 import com.richard.catalogo.domain.Curso;
 import com.richard.catalogo.domain.Temario;
 import com.richard.catalogo.service.CursoService;
-import com.richard.catalogo.service.Impl.CursoServiceImpl;
-import com.richard.catalogo.service.Impl.TemarioServiceImpl;
 
 import com.richard.catalogo.service.TemarioService;
 import org.primefaces.context.RequestContext;

@@ -1,4 +1,4 @@
-package com.richard.catalogo.service.Impl;
+package com.richard.catalogo.service.impl;
 
 import com.richard.catalogo.data.TemarioMapper;
 import com.richard.catalogo.domain.Temario;
