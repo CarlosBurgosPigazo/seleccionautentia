@@ -37,7 +37,7 @@ public class CursoMapperIT {
         cursoAInsertar.setNivel("Intermedio");
 
         cursoMapper.insert(cursoAInsertar);
-        
+
         assertTrue(!cursoMapper.getActivos().contains(cursoAInsertar));
     }
     @Test
