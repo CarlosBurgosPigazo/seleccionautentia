@@ -22,7 +22,7 @@ public interface CursoMapper {
     @Select("SELECT * FROM curso WHERE ACTIVO = TRUE")
     List<Curso> getActivos();
 
-    @Insert("INSERT INTO CURSO (titulo, activo, horas, nivel, idProfesor) " +
+    @Insert("INSERT INTO curso (titulo, activo, horas, nivel, idProfesor) " +
             "VALUES (#{titulo}, #{activo}, #{horas}, #{nivel}, #{idProfesor})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     void insert(Curso curso);
