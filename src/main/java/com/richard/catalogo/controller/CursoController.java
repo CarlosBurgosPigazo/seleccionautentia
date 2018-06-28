@@ -2,6 +2,7 @@ package com.richard.catalogo.controller;
 
 import com.richard.catalogo.domain.Curso;
 import com.richard.catalogo.domain.Temario;
+import com.richard.catalogo.exceptions.InsertarException;
 import com.richard.catalogo.service.CursoService;
 
 import com.richard.catalogo.service.TemarioService;
@@ -24,7 +25,9 @@ import java.util.List;
 @ViewScoped
 public class CursoController implements Serializable {
 
-    @ManagedProperty("#{cursoServiceImpl}")
+	private static final long serialVersionUID = 1L;
+
+	@ManagedProperty("#{cursoServiceImpl}")
     private CursoService cursoService;
 
     @ManagedProperty("#{temarioServiceImpl}")
@@ -57,7 +60,12 @@ public class CursoController implements Serializable {
     }
 
     public void insertCurrent() {
-        cursoService.insert(cursoAInsertar);
+        try {
+			cursoService.insert(cursoAInsertar);
+		} catch (InsertarException e) {
+	        showMsg("No hemos podido guardar el curso, intentelo mas tarde.");
+	        return;
+		}
         showMsg("Curso: " + cursoAInsertar.getTitulo() + " creado.");
         if (temarioAsociado.getBytes() != null) {
             temarioAsociado.setId(cursoAInsertar.getId());

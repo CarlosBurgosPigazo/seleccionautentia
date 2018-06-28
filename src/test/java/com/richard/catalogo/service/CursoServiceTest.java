@@ -2,6 +2,7 @@ package com.richard.catalogo.service;
 
 import com.richard.catalogo.data.CursoMapper;
 import com.richard.catalogo.domain.Curso;
+import com.richard.catalogo.exceptions.InsertarException;
 import com.richard.catalogo.service.impl.CursoServiceImpl;
 import org.junit.Test;
 
@@ -12,16 +13,19 @@ public class CursoServiceTest {
     private CursoService sut = new CursoServiceImpl(cursoMapper);
 
     @Test
-    public void alInsertarUnCursoSeDebeDevolverSiEsteEsActivo(){
-        Curso curso = new Curso();
-        curso.setId(1);
-        curso.setActivo(true);
-        curso.setHoras(100);
-        curso.setIdProfesor(1);
-        curso.setNivel("Intermedio");
-        curso.setTitulo("Curso avanzado");
+    public void alInsertarUnCursoDebemosLlamarAlMapper() throws InsertarException{
+        Curso curso = mock(Curso.class);
 
-
+        sut.insert(curso);
+        
+        verify(cursoMapper).insert(curso);
     }
 
+    @Test(expected=InsertarException.class)
+    public void alInsertarUnCursoSiFallaElMapperLanzamosExcepcion() throws InsertarException{
+        Curso curso = mock(Curso.class);
+        doThrow(RuntimeException.class).when(cursoMapper).insert(curso);
+
+        sut.insert(curso);
+    }
 }

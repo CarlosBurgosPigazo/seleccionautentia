@@ -2,6 +2,7 @@ package com.richard.catalogo.service.impl;
 
 import com.richard.catalogo.data.CursoMapper;
 import com.richard.catalogo.domain.Curso;
+import com.richard.catalogo.exceptions.InsertarException;
 import com.richard.catalogo.service.CursoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,12 @@ public class CursoServiceImpl implements CursoService {
         return cursoMapper.getActivos();
     }
 
-    public void insert(Curso curso) {
-         cursoMapper.insert(curso);
+    public void insert(Curso curso) throws InsertarException {
+    	try{
+    		cursoMapper.insert(curso);
+    	}catch (Exception e) {
+			throw new InsertarException();
+		}
     }
 
 

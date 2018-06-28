@@ -14,8 +14,9 @@ import java.util.List;
 @ViewScoped
 public class ProfesorController implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 
-    private List<Profesor> profesores;
+	private List<Profesor> profesores;
 
     @ManagedProperty("#{profesorServiceImpl}")
     private ProfesorService profesorService;
