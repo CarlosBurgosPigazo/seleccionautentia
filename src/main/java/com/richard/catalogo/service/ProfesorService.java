@@ -1,17 +1,17 @@
-package com.richard.service;
+package com.richard.catalogo.service;
 
-import com.richard.data.ProfesorMapper;
-import com.richard.domain.Profesor;
+import com.richard.catalogo.data.ProfesorMapper;
+import com.richard.catalogo.domain.Profesor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("profesorService")
+@Service
 public class ProfesorService {
     private ProfesorMapper profesorMapper;
 
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public ProfesorService(ProfesorMapper profesorMapper) {
         this.profesorMapper = profesorMapper;

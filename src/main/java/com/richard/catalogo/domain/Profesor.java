@@ -1,4 +1,4 @@
-package com.richard.domain;
+package com.richard.catalogo.domain;
 
 import org.springframework.stereotype.Component;
 

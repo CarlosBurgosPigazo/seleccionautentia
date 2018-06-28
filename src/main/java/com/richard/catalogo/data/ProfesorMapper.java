@@ -1,10 +1,11 @@
-package com.richard.data;
+package com.richard.catalogo.data;
 
-import com.richard.domain.Profesor;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+
+import com.richard.catalogo.domain.Profesor;
 
 import java.util.List;
 

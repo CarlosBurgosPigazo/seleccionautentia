@@ -1,4 +1,4 @@
-package com.richard.config;
+package com.richard.catalogo.config;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -15,12 +15,13 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan("com.richard.service")
-@MapperScan("com.richard.data")
+@ComponentScan("com.richard.catalogo.service")
+@MapperScan("com.richard.catalogo.data")
 public class DataSourceConfig {
 
     @Autowired
     private Environment env;
+    
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -32,15 +33,15 @@ public class DataSourceConfig {
     }
 
     @Bean
-    public DataSourceTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
+    public DataSourceTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
-    public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.richard.domain");
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.richard.catalogo.domain");
         return sqlSessionFactoryBean;
     }
 }
