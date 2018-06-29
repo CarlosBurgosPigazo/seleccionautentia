@@ -48,7 +48,6 @@ public class CursoController implements Serializable {
 
     public void setCursoService(CursoService cursoService) {
         this.cursoService = cursoService;
-
     }
 
     public List<Curso> getCursos() {
