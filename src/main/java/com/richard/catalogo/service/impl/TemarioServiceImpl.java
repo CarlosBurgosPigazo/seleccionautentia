@@ -25,7 +25,6 @@ public class TemarioServiceImpl implements TemarioService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void insert(Temario temario) {
         temarioMapper.insert(temario);
     }

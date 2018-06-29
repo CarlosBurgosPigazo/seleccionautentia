@@ -2,6 +2,7 @@ package com.richard.catalogo.data;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import com.richard.catalogo.domain.Temario;
@@ -13,5 +14,6 @@ public interface TemarioMapper {
     Temario getTemarioById(long id);
 
     @Insert("INSERT INTO TEMARIO (id,nombre,extension, bytes)VALUES(#{id},#{nombre},#{extension},#{bytes})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
     void insert(Temario temario);
 }

@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 public class CursoServiceTest {
+
     private CursoMapper cursoMapper = mock(CursoMapper.class);
     private CursoService sut = new CursoServiceImpl(cursoMapper);
 
