@@ -2,6 +2,9 @@ package com.richard.catalogo.domain;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 @Component
 public class Temario {
     private long id;
@@ -39,5 +42,24 @@ public class Temario {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Temario temario = (Temario) o;
+        return id == temario.id &&
+                Objects.equals(nombre, temario.nombre) &&
+                Objects.equals(extension, temario.extension) &&
+                Arrays.equals(bytes, temario.bytes);
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = Objects.hash(id, nombre, extension);
+        result = 31 * result + Arrays.hashCode(bytes);
+        return result;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.*;
 
@@ -18,10 +19,21 @@ public class TemarioMapperIT {
     @Autowired
     private TemarioMapper temarioMapper;
 
+
     @Test
+    @Transactional
     public void alInsertarYUnCursoEsteDebeGuardarse(){
         Temario temario = new Temario();
-        //temario.setExtension();
+        temario.setExtension("text/plain");
+        temario.setBytes("test".getBytes());
+        temario.setNombre("test");
+        temario.setId(1);
+
+        temarioMapper.insert(temario);
+        Temario temarioFromDB = temarioMapper.getTemarioById(temario.getId());
+
+        assertEquals(temario, temarioFromDB);
+
 
     }
 
