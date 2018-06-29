@@ -5,8 +5,14 @@ import com.richard.catalogo.service.CursoService;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+
+
 import static org.mockito.Mockito.mock;
 import static org.junit.Assert.*;
+
+
 
 public class CursoControllerTest {
     private CursoService cursoService = mock(CursoService.class);
@@ -18,12 +24,17 @@ public class CursoControllerTest {
     }
     @Test
     public void alInsertarUnCursoElCursoAInsertarSeDebeResetear(){
-        Curso curso = mock(Curso.class);
+        Curso curso = new Curso();
+        curso.setId(1);
+        curso.setNivel("Intermedio");
+        curso.setIdProfesor(1);
+        curso.setTitulo("JAVA 05");
+        Curso cursoEsperado = new Curso();
 
-        //sut.setCursoAInsertar(curso);
-        //sut.insertCurrent();
+        sut.setCursoAInsertar(curso);
+        sut.insertCurrent();
 
-        //assertEquals(sut.getCursoAInsertar(), new Curso());
+        assertEquals(cursoEsperado, sut.getCursoAInsertar());
 
     }
 }

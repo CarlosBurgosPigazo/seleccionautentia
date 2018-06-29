@@ -1,5 +1,7 @@
 package com.richard.catalogo.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
@@ -72,5 +74,35 @@ public class Curso {
                 .append("horas", horas)
                 .append("nivel", nivel)
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Curso curso = (Curso) o;
+
+        return new EqualsBuilder()
+                .append(id, curso.id)
+                .append(activo, curso.activo)
+                .append(idProfesor, curso.idProfesor)
+                .append(horas, curso.horas)
+                .append(titulo, curso.titulo)
+                .append(nivel, curso.nivel)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(titulo)
+                .append(activo)
+                .append(idProfesor)
+                .append(horas)
+                .append(nivel)
+                .toHashCode();
     }
 }

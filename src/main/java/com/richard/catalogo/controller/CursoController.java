@@ -78,13 +78,18 @@ public class CursoController implements Serializable {
 
     private void resetearLaVentanaModal() {
         RequestContext currentInstance = RequestContext.getCurrentInstance();
-        currentInstance.execute("PF('PF('altaCurso').hide();$('#nuevoCursoForm').trigger('reset')')");
+        if(currentInstance!=null){
+            currentInstance.execute("PF('PF('altaCurso').hide();$('#nuevoCursoForm').trigger('reset')')");
+        }
     }
 
     private void showMsg(String msg) {
-        FacesContext.getCurrentInstance()
-                .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "Información", msg));
+        FacesContext faceContext = FacesContext.getCurrentInstance();
+        if(faceContext!=null){
+            faceContext
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                            "Información", msg));
+        }
     }
 
     public void uploadTemarioEvent(FileUploadEvent event) {
