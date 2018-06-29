@@ -75,6 +75,7 @@ public class CursoController implements Serializable {
         currentInstance.execute("PF('PF('altaCurso').hide();$('#nuevoCursoForm').trigger('reset')')");
         this.cursos = cursoService.getActivos();
         this.temarioAsociado = new Temario();
+        this.cursoAInsertar = new Curso();
     }
 
     private void showMsg(String msg) {
