@@ -26,6 +26,7 @@ public class TemarioMapperIT {
         temario.setExtension("text/plain");
         temario.setBytes("test".getBytes());
         temario.setNombre("test");
+        temario.setId(1L);
         temario.setIdCurso(1L);
 
         temarioMapper.insert(temario);

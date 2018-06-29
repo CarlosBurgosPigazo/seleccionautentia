@@ -28,6 +28,7 @@ public class ProfesorMapperIT {
         profesorExpected.setNombre("Roberto Canales Mora");
 
         List<Profesor> profesores = profesorMapper.getAll();
+        //TODO REVISAR DIRECCIÓN DE MEMORIA
 
         assertThat(profesores.size(), greaterThan(6));
         assertThat(profesores, contains(profesorExpected));

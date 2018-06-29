@@ -15,7 +15,7 @@ public class TemarioServiceImpl implements TemarioService {
     private TemarioMapper temarioMapper;
 
     @Autowired
-    public TemarioServiceImpl(TemarioMapper temarioMapper){
+    public TemarioServiceImpl(TemarioMapper temarioMapper) {
         this.temarioMapper = temarioMapper;
     }
 
@@ -26,6 +26,10 @@ public class TemarioServiceImpl implements TemarioService {
 
     @Override
     public void insert(Temario temario) {
-        temarioMapper.insert(temario);
+        if (temario.getBytes() != null) {
+            temarioMapper.insert(temario);
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 }

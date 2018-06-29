@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class TemarioServiceTest {
@@ -15,16 +16,29 @@ public class TemarioServiceTest {
     private TemarioService sut =new TemarioServiceImpl(temarioMapper);
 
     @Test
-    public void alInsertarSeDebeLlamaAlMapper(){
-        Temario temario= mock(Temario.class);
+    public void alInsertarUnTemarioValidoSeDebeLlamaAlMapper(){
+        Temario temario= new Temario();
+        temario.setNombre("temario");
+        temario.setBytes("temario".getBytes());
+        temario.setExtension("text/plain");
+        temario.setIdCurso(1L);
 
         sut.insert(temario);
 
         verify(temarioMapper).insert(temario);
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void AlInsertarUnTemarioVacioNoSeDebeLlamarAlMapper(){
+        Temario temario = mock(Temario.class);
+
+        sut.insert(temario);
+
+    }
+
+
 
     @Test
-    public void alConsultarUnCursoSeDebeLlamarAlMapper(){
+    public void alConsultarUnTemarioSeDebeLlamarAlMapper(){
         Long idCurso=1L;
 
         sut.getTemarioByIdCurso(idCurso);

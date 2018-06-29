@@ -45,7 +45,7 @@ INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Java 10', 1, 2
 INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Programación OOP', 1, 15,'Básico', 3 );
 
 CREATE TABLE TEMARIO(
-  id    INT(8) PRIMARY KEY,
+  id    INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50),
   extension VARCHAR(50),
   bytes MEDIUMBLOB,

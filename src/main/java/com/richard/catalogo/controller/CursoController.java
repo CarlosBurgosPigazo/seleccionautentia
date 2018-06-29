@@ -60,12 +60,8 @@ public class CursoController implements Serializable {
 
     public void insertCurrent() {
         try {
-			cursoService.insert(cursoAInsertar);
-            if (temarioAsociado.getBytes() != null) {
-                temarioAsociado.setId(cursoAInsertar.getId());
-                temarioService.insert(temarioAsociado);
-                temarioAsociado = new Temario();
-            }
+			cursoService.insert(cursoAInsertar, temarioAsociado);
+
             showMsg("Curso: " + cursoAInsertar.getTitulo() + " creado.");
 		} catch (InsertarException e) {
 	        showMsg("No hemos podido guardar el curso, intentelo mas tarde.");
