@@ -2,13 +2,10 @@ package com.richard.catalogo.service;
 
 import com.richard.catalogo.data.TemarioMapper;
 import com.richard.catalogo.domain.Temario;
-import com.richard.catalogo.service.TemarioService;
 import com.richard.catalogo.service.impl.TemarioServiceImpl;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 public class TemarioServiceTest {

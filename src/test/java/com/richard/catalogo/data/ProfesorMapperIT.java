@@ -2,6 +2,7 @@ package com.richard.catalogo.data;
 
 import com.richard.catalogo.config.DataSourceConfig;
 import com.richard.catalogo.domain.Profesor;
+import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,9 @@ public class ProfesorMapperIT {
         profesorExpected.setNombre("Roberto Canales Mora");
 
         List<Profesor> profesores = profesorMapper.getAll();
-        //TODO REVISAR DIRECCIÓN DE MEMORIA
 
         assertThat(profesores.size(), greaterThan(6));
-        assertThat(profesores, contains(profesorExpected));
+        assertThat(profesores, hasItem(profesorExpected));
 
     }
 }
