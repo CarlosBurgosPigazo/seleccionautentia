@@ -45,8 +45,9 @@ INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Java 10', 1, 2
 INSERT INTO curso (titulo,activo,horas,nivel,idProfesor) VALUES ('Programación OOP', 1, 15,'Básico', 3 );
 
 CREATE TABLE TEMARIO(
-  id    INT(8) PRIMARY KEY REFERENCES CURSO(id),
+  id    INT(8) PRIMARY KEY,
   nombre VARCHAR(50),
   extension VARCHAR(50),
-  bytes MEDIUMBLOB
+  bytes MEDIUMBLOB,
+  idCurso INT(8) REFERENCES CURSO(id)
 )ENGINE=InnoDB;

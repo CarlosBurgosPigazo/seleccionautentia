@@ -10,10 +10,10 @@ import com.richard.catalogo.domain.Temario;
 @Mapper
 public interface TemarioMapper {
 
-    @Select("SELECT * FROM TEMARIO WHERE ID=#{id}")
-    Temario getTemarioById(long id);
+    @Select("SELECT * FROM TEMARIO WHERE ID=#{idCurso}")
+    Temario getTemarioByIdCurso(Long idCurso);
 
-    @Insert("INSERT INTO TEMARIO (id,nombre,extension, bytes)VALUES(#{id},#{nombre},#{extension},#{bytes})")
+    @Insert("INSERT INTO TEMARIO (nombre,extension, bytes, idCurso)VALUES(#{nombre},#{extension},#{bytes},#{idCurso})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     void insert(Temario temario);
 }

@@ -24,21 +24,26 @@ public class CursoMapperIT {
     private CursoMapper sut;
 
     @Test
-    public void todosLosCursosDeberianSerActivos() { assertTrue(sut.getActivos().stream().allMatch(Curso::isActivo)); }
+    public void todosLosCursosDeberianSerActivos() {
+        boolean sonTodosActivos = sut.getActivos().stream().allMatch(Curso::isActivo);
+
+        assertTrue(sonTodosActivos);
+    }
 
     @Test
     @Transactional
     public void insertandoUnCursoNoActivoNoDeberiaMostrarseEnLosActivos(){
-        Curso cursoAInsertar = new Curso();
-        cursoAInsertar.setTitulo("Prueba");
-        cursoAInsertar.setActivo(false);
-        cursoAInsertar.setIdProfesor(1);
-        cursoAInsertar.setHoras(100);
-        cursoAInsertar.setNivel("Intermedio");
+        Curso cursoInactivo = new Curso();
+        cursoInactivo.setTitulo("Prueba");
+        cursoInactivo.setActivo(false);
+        cursoInactivo.setIdProfesor(1);
+        cursoInactivo.setHoras(100);
+        cursoInactivo.setNivel("Intermedio");
 
-        sut.insert(cursoAInsertar);
+        sut.insert(cursoInactivo);
+        boolean contieneCursoInactivo = sut.getActivos().contains(cursoInactivo);
 
-        assertTrue(!sut.getActivos().contains(cursoAInsertar));
+        assertFalse(contieneCursoInactivo);
     }
     @Test
     @Transactional

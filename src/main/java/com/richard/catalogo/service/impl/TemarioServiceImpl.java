@@ -20,8 +20,8 @@ public class TemarioServiceImpl implements TemarioService {
     }
 
     @Override
-    public Temario getTemarioById(long id) {
-        return temarioMapper.getTemarioById(id);
+    public Temario getTemarioByIdCurso(Long id) {
+        return temarioMapper.getTemarioByIdCurso(id);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.richard.catalogo.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -25,9 +26,9 @@ public class Profesor {
 
     @Override
     public String toString() {
-        return "Profesor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("nombre", nombre)
+                .toString();
     }
 }

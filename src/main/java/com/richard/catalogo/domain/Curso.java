@@ -1,5 +1,6 @@
 package com.richard.catalogo.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -63,13 +64,13 @@ public class Curso {
 
     @Override
     public String toString() {
-        return "Curso{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", activo=" + activo +
-                ", idProfesor=" + idProfesor +
-                ", horas=" + horas +
-                ", nivel='" + nivel + '\'' +
-                '}';
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("titulo", titulo)
+                .append("activo", activo)
+                .append("idProfesor", idProfesor)
+                .append("horas", horas)
+                .append("nivel", nivel)
+                .toString();
     }
 }

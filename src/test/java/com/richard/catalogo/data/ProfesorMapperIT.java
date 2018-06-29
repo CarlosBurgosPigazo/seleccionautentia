@@ -23,9 +23,14 @@ public class ProfesorMapperIT {
 
     @Test
     public void recuperarTodosDeberiaDevolverUnaListaDeProfesores(){
+        Profesor profesorExpected = new Profesor();
+        profesorExpected.setId(1);
+        profesorExpected.setNombre("Roberto Canales Mora");
+
         List<Profesor> profesores = profesorMapper.getAll();
 
-        assertEquals(profesores.size(), 12);
+        assertThat(profesores.size(), greaterThan(6));
+        assertThat(profesores, contains(profesorExpected));
 
     }
 }

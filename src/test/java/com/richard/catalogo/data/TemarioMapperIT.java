@@ -19,7 +19,6 @@ public class TemarioMapperIT {
     @Autowired
     private TemarioMapper temarioMapper;
 
-
     @Test
     @Transactional
     public void alInsertarYUnCursoEsteDebeGuardarse(){
@@ -27,14 +26,12 @@ public class TemarioMapperIT {
         temario.setExtension("text/plain");
         temario.setBytes("test".getBytes());
         temario.setNombre("test");
-        temario.setId(1);
+        temario.setIdCurso(1L);
 
         temarioMapper.insert(temario);
-        Temario temarioFromDB = temarioMapper.getTemarioById(temario.getId());
+        Temario temarioFromDB = temarioMapper.getTemarioByIdCurso(temario.getId());
 
         assertEquals(temario, temarioFromDB);
-
-
     }
 
 

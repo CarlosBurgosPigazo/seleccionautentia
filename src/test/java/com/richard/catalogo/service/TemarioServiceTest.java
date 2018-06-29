@@ -1,8 +1,9 @@
-package com.richard.catalogo.service.impl;
+package com.richard.catalogo.service;
 
 import com.richard.catalogo.data.TemarioMapper;
 import com.richard.catalogo.domain.Temario;
 import com.richard.catalogo.service.TemarioService;
+import com.richard.catalogo.service.impl.TemarioServiceImpl;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -24,11 +25,11 @@ public class TemarioServiceTest {
 
     @Test
     public void alConsultarUnCursoSeDebeLlamarAlMapper(){
-        int idTemario=1;
+        Long idCurso=1L;
 
-        sut.getTemarioById(idTemario);
+        sut.getTemarioByIdCurso(idCurso);
 
-        verify(temarioMapper).getTemarioById(idTemario);
+        verify(temarioMapper).getTemarioByIdCurso(idCurso);
     }
 
 }

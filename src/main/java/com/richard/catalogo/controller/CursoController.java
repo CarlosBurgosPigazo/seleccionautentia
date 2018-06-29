@@ -61,21 +61,28 @@ public class CursoController implements Serializable {
     public void insertCurrent() {
         try {
 			cursoService.insert(cursoAInsertar);
+            if (temarioAsociado.getBytes() != null) {
+                temarioAsociado.setId(cursoAInsertar.getId());
+                temarioService.insert(temarioAsociado);
+                temarioAsociado = new Temario();
+            }
+            showMsg("Curso: " + cursoAInsertar.getTitulo() + " creado.");
 		} catch (InsertarException e) {
 	        showMsg("No hemos podido guardar el curso, intentelo mas tarde.");
-	        return;
 		}
-        showMsg("Curso: " + cursoAInsertar.getTitulo() + " creado.");
-        if (temarioAsociado.getBytes() != null) {
-            temarioAsociado.setId(cursoAInsertar.getId());
-            temarioService.insert(temarioAsociado);
-            temarioAsociado = new Temario();
-        }
-        RequestContext currentInstance = RequestContext.getCurrentInstance();
-        currentInstance.execute("PF('PF('altaCurso').hide();$('#nuevoCursoForm').trigger('reset')')");
+        resetearLaVentanaModal();
+        resetearVariablesDelContextoJSF();
+    }
+
+    private void resetearVariablesDelContextoJSF() {
         this.cursos = cursoService.getActivos();
         this.temarioAsociado = new Temario();
         this.cursoAInsertar = new Curso();
+    }
+
+    private void resetearLaVentanaModal() {
+        RequestContext currentInstance = RequestContext.getCurrentInstance();
+        currentInstance.execute("PF('PF('altaCurso').hide();$('#nuevoCursoForm').trigger('reset')')");
     }
 
     private void showMsg(String msg) {
@@ -104,7 +111,7 @@ public class CursoController implements Serializable {
     }
 
     public StreamedContent getTemarioADescargar(long id) {
-        Temario temario = temarioService.getTemarioById(id);
+        Temario temario = temarioService.getTemarioByIdCurso(id);
         if(temario!= null){
           return new DefaultStreamedContent(new ByteArrayInputStream(temario.getBytes()), temario.getExtension(), temario.getNombre());
         }else {

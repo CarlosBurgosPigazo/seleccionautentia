@@ -1,9 +1,8 @@
 package com.richard.catalogo.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.Objects;
 
 @Component
 public class Temario {
@@ -11,6 +10,7 @@ public class Temario {
     private String nombre;
     private String extension;
     private byte[] bytes;
+    private Long idCurso;
 
     public long getId() {
         return id;
@@ -44,22 +44,39 @@ public class Temario {
         this.extension = extension;
     }
 
+    public Long getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(Long idCurso) {
+        this.idCurso = idCurso;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
+
         Temario temario = (Temario) o;
-        return id == temario.id &&
-                Objects.equals(nombre, temario.nombre) &&
-                Objects.equals(extension, temario.extension) &&
-                Arrays.equals(bytes, temario.bytes);
+
+        return new EqualsBuilder()
+                .append(id, temario.id)
+                .append(nombre, temario.nombre)
+                .append(extension, temario.extension)
+                .append(bytes, temario.bytes)
+                .append(idCurso, temario.idCurso)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-
-        int result = Objects.hash(id, nombre, extension);
-        result = 31 * result + Arrays.hashCode(bytes);
-        return result;
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(nombre)
+                .append(extension)
+                .append(bytes)
+                .append(idCurso)
+                .toHashCode();
     }
 }
