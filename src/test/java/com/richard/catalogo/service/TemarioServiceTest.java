@@ -24,15 +24,6 @@ public class TemarioServiceTest {
 
         verify(temarioMapper).insert(temario);
     }
-    @Test(expected = IllegalArgumentException.class)
-    public void AlInsertarUnTemarioVacioNoSeDebeLlamarAlMapper(){
-        Temario temario = mock(Temario.class);
-
-        sut.insert(temario);
-
-    }
-
-
 
     @Test
     public void alConsultarUnTemarioSeDebeLlamarAlMapper(){

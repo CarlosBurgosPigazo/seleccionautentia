@@ -9,6 +9,7 @@ import com.richard.catalogo.service.CursoService;
 import com.richard.catalogo.service.TemarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class CursoServiceImpl implements CursoService {
     }
 
     @Override
+    @Transactional
     public void insert(Curso curso, Temario temario) throws InsertarException {
     	try{
     		cursoMapper.insert(curso);

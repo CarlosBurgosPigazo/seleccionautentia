@@ -6,8 +6,6 @@ import com.richard.catalogo.domain.Temario;
 import com.richard.catalogo.service.TemarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TemarioServiceImpl implements TemarioService {
@@ -28,8 +26,6 @@ public class TemarioServiceImpl implements TemarioService {
     public void insert(Temario temario) {
         if (temario.getBytes() != null) {
             temarioMapper.insert(temario);
-        } else {
-            throw new IllegalArgumentException();
         }
     }
 }
