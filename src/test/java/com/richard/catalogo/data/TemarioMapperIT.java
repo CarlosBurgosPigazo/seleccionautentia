@@ -21,7 +21,7 @@ public class TemarioMapperIT {
 
     @Test
     @Transactional
-    public void alInsertarYUnCursoEsteDebeGuardarse(){
+    public void alInsertarYUnCursoDebeGuardarse(){
         Temario temario = new Temario();
         temario.setExtension("text/plain");
         temario.setBytes("test".getBytes());
