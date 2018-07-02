@@ -9,7 +9,7 @@ before_cache:
   - rm -rf $HOME/.m2/repository/com/richard
 
 before_install:
- - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.0/codacy-coverage-reporter-4.0.1-assembly.jar
+ - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.1/codacy-coverage-reporter-4.0.1-assembly.jar
 
 script:
   - mvn clean install
