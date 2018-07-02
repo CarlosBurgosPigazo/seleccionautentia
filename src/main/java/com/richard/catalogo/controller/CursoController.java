@@ -46,6 +46,10 @@ public class CursoController implements Serializable {
         this.temarioAsociado = new Temario();
     }
 
+    public Temario getTemarioAsociado() {
+        return temarioAsociado;
+    }
+
     public void setCursoService(CursoService cursoService) {
         this.cursoService = cursoService;
     }
