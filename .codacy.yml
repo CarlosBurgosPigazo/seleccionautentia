@@ -3,14 +3,17 @@ engines:
    enabled: true
    exclude_paths:
      - config/engines.yml
+     - **/*.sql
  duplication:
    enabled: true
    exclude_paths:
      - config/engines.yml
+     - **/*.sql
  metrics:
    enabled: true
    exclude_paths:
      - config/engines.yml
+     - **/*.sql
  coverage:
    enabled: true
    exclude_paths:
