@@ -9,15 +9,15 @@ before_cache:
   - rm -rf $HOME/.m2/repository/com/richard
 
 before_install:
-  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.1/codacy-coverage-reporter-4.0.1-assembly.jar)
+ - wget https://github.com/codacy/codacy-coverage-reporter/releases/download/4.0.0/codacy-coverage-reporter-4.0.1-assembly.jar
 
 script:
   - mvn clean install
 
 after_success:
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r target/jacoco/it/jacoco.xml --partial
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar report -l Java -r target/jacoco/ut/jacoco.xml --partial
-  - java -jar ~/codacy-coverage-reporter-assembly-latest.jar final
+  - java -jar codacy-coverage-reporter-4.0.1-assembly.jar report -l Java -r target/jacoco/it/jacoco.xml --partial
+  - java -jar codacy-coverage-reporter-4.0.1-assembly.jar report -l Java -r target/jacoco/ut/jacoco.xml --partial
+  - java -jar codacy-coverage-reporter-4.0.1-assembly.jar final
 
 jdk:
   - oraclejdk8
