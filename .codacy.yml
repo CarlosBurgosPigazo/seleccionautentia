@@ -1,8 +1,9 @@
 exclude_paths:
   - '**/config/**'
-  - '**.sql'
-  - '**.yml'
-  - '**.xml'
-  - '**.gitignore'
-  - '**.xhtml'
-  - '**.properties'º
+  - '**/*.sql'
+  - '**/*.yml'
+  - '**/*.xml'
+  - '**/*.gitignore'
+  - '**/*.xhtml'
+  - '**/*.properties'
+  
