@@ -11,10 +11,10 @@
         <jacoco.version>0.7.6.201602180812</jacoco.version>
         <jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
 
-        <jacoco.utreportpath>${project.build.directory}/jacoco</jacoco.utreportpath>
+        <jacoco.utreportpath>${project.build.directory}/jacoco/ut</jacoco.utreportpath>
         <jacoco.utreportfile>${jacoco.utreportpath}/jacoco.exec</jacoco.utreportfile>
 
-        <jacoco.itreportpath>${project.build.directory}/jacoco</jacoco.itreportpath>
+        <jacoco.itreportpath>${project.build.directory}/jacoco/it</jacoco.itreportpath>
         <jacoco.itreportfile>${jacoco.itreportpath}/jacoco-it.exec</jacoco.itreportfile>
         
         <sonar.host.url>http://localhost:9000</sonar.host.url>
@@ -96,9 +96,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>${surefireArgLine}</argLine>
-                    <excludes>
-                        <exclude>**/*IT.java</exclude>
-                    </excludes>
                 </configuration>
             </plugin>
 

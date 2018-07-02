@@ -19,7 +19,7 @@ engines:
    exclude_paths:
     - config/engines.yml
     - **/config/**
-    - **/*.sql
+    - **.sql
     - **/*.yml
     - **/*.xml
     - **/*.gitignore
