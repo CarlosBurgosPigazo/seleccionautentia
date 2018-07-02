@@ -5,4 +5,4 @@ exclude_paths:
   - '**.xml'
   - '**.gitignore'
   - '**.xhtml'
-  - '**.properties'
+  - '**.properties'º

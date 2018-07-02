@@ -5,12 +5,8 @@ import com.richard.catalogo.service.CursoService;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-
-
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.junit.Assert.*;
 
 
 
