@@ -4,7 +4,6 @@ import com.richard.catalogo.domain.Curso;
 import com.richard.catalogo.domain.Temario;
 import com.richard.catalogo.service.CursoService;
 import com.richard.catalogo.service.TemarioService;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Before;
 import org.junit.Test;
 import org.primefaces.event.FileUploadEvent;
@@ -12,12 +11,9 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-import java.io.File;
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,8 +29,9 @@ public class CursoControllerTest {
         sut.setTemarioService(temarioService);
         sut.init();
     }
+
     @Test
-    public void alInsertarUnCursoElCursoAInsertarSeDebeResetear(){
+    public void alInsertarUnCursoElCursoAInsertarSeDebeResetear() {
         Curso curso = new Curso();
         curso.setId(1);
         curso.setNivel("Intermedio");
@@ -48,8 +45,9 @@ public class CursoControllerTest {
         assertEquals(cursoEsperado, sut.getCursoAInsertar());
 
     }
+
     @Test
-    public void alSubirUnArchivoElTemarioActualDebeActualizarseCorrectamente(){
+    public void alSubirUnArchivoElTemarioActualDebeActualizarseCorrectamente() {
         FileUploadEvent evento = mock(FileUploadEvent.class);
         UploadedFile fichero = mock(UploadedFile.class);
         when(evento.getFile()).thenReturn(fichero);
@@ -66,15 +64,16 @@ public class CursoControllerTest {
     }
 
     @Test
-    public void alSolicitarUnTemarioNoExistenteSeDevuelveNull(){
+    public void alSolicitarUnTemarioNoExistenteSeDevuelveNull() {
         when(temarioService.getTemarioByIdCurso(1L)).thenReturn(null);
 
         StreamedContent temarioADescargar = sut.getTemarioADescargar(1);
 
-        assertEquals(temarioADescargar, null);
+        assertNull(temarioADescargar);
     }
+
     @Test
-    public void alSolicitarUnTemarioExistenteSeDevuelveDefaultStreamedContent(){
+    public void alSolicitarUnTemarioExistenteSeDevuelveDefaultStreamedContent() {
         Temario temario = new Temario();
         temario.setIdCurso(1L);
         temario.setId(1L);
